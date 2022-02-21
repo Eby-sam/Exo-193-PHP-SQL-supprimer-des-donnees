@@ -10,3 +10,32 @@
  *    --> Finalement, vous décidez de supprimer complètement la table
  *    --> Et pour finir, comme vous n'avez plus de table dans la base de données, vous décidez de supprimer aussi la base de données.
  */
+
+try{
+    $server = 'localhost';
+    $db = 'exo_193';
+    $user = 'root';
+    $pass = '';
+
+    $id = 2;
+    $bdd = new PDO("mysql:host=$server;dbname=$db;charset=utf8",$user,$pass);
+    $sql = "DELETE FROM user WHERE id = 1";
+        if($bdd ->exec($sql) !== false){
+           echo "l'entrée de l'id 1 a etait supprimé";
+    }
+
+    $sql = "TRUNCATE TABLE USER";
+    if($bdd->exec($sql) !== false){
+        echo "truncate efféctué ! ";
+    }
+
+    $sql = "DROP TABLE user";
+    if($bdd->exec($sql) !== false){
+        echo "la table est supprimé !";
+    }
+
+}
+
+catch(PDOException $exception) {
+    echo $exception->getMessage();
+}
